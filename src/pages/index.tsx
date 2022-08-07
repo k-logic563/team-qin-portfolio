@@ -12,9 +12,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <Title order={1}>
-          Welcome to Qin Portfolio.
-        </Title>
+        <Title order={1}>Welcome to Qin Portfolio.</Title>
       </main>
     </div>
   )
