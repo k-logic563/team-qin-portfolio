@@ -13,13 +13,14 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "yarn lint:fix"
+      "yarn lint"
     ]
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
     "@mantine/core": "^5.0.3",
     "@mantine/hooks": "^5.0.3",
+    "@tabler/icons": "^1.78.1",
     "next": "12.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
