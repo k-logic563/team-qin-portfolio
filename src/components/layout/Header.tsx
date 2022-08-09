@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import {
   Container,
@@ -9,8 +9,10 @@ import {
   useMantineColorScheme,
   Stack,
   Modal,
+  MediaQuery,
+  Burger,
 } from '@mantine/core'
-import { IconMoon, IconMenu2, IconX } from '@tabler/icons'
+import { IconMoon, IconSun } from '@tabler/icons'
 
 import { navItems } from '@/constants/page'
 
@@ -19,31 +21,23 @@ const useStyles = createStyles((theme, { isDark }: { isDark: boolean }) => ({
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
     fontSize: '18px',
+    color: isDark ? 'white' : theme.colors.dark[9],
   },
   icon: {
     borderColor: theme.colors.dark[0],
     color: isDark ? 'white' : theme.colors.dark[9],
-  },
-  iconMenu: {
-    [theme.fn.largerThan('md')]: {
-      display: 'none',
-    },
   },
   link: {
     textDecoration: 'none',
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
     fontSize: '18px',
-    display: 'none',
     color: isDark ? 'white' : theme.colors.dark[9],
-
-    [theme.fn.largerThan('md')]: {
-      display: 'block',
-    },
   },
   modal: {
     '.mantine-Modal-modal': {
       backgroundColor: theme.colors.pink[6],
+      paddingTop: '90px',
     },
   },
   modalLink: {
@@ -51,38 +45,51 @@ const useStyles = createStyles((theme, { isDark }: { isDark: boolean }) => ({
     textDecoration: 'none',
     fontSize: '28px',
     fontWeight: 700,
-    fontFamily: theme.fontFamilyMonospace
-  }
+    fontFamily: theme.fontFamilyMonospace,
+  },
 }))
 
 export const Header = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
-  const { classes } = useStyles({ isDark: colorScheme === 'dark' })
+  const isDark = useMemo(() => colorScheme === 'dark', [colorScheme])
+  const { classes } = useStyles({ isDark })
 
   return (
     <>
       <Container size="xl" py={20}>
         <Group position="apart">
-          <ActionIcon
-            className={classes.iconMenu}
-            onClick={() => setOpened(true)}
-          >
-            <IconMenu2 size={20} className={classes.icon} />
-          </ActionIcon>
+          <MediaQuery largerThan="md" styles={{ display: 'none' }}>
+            <Burger
+              color={opened ? '#fff' : 'black'}
+              opened={opened}
+              onClick={() => setOpened((x) => !x)}
+              sx={{
+                zIndex: 1000,
+              }}
+            />
+          </MediaQuery>
           <Text className={classes.logo}>Shimabu IT University</Text>
           <Group>
-            {navItems.map((item, i) => (
-              <Link key={i} href={item.href} passHref>
-                <a className={classes.link}>{item.title}</a>
-              </Link>
-            ))}
+            <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+              <Group>
+                {navItems.map((item, i) => (
+                  <Link key={i} href={item.href} passHref>
+                    <a className={classes.link}>{item.title}</a>
+                  </Link>
+                ))}
+              </Group>
+            </MediaQuery>
             <ActionIcon
               variant="outline"
               radius={8}
               onClick={() => toggleColorScheme()}
             >
-              <IconMoon size={16} className={classes.icon} />
+              {isDark ? (
+                <IconSun size={16} className={classes.icon} />
+              ) : (
+                <IconMoon size={16} className={classes.icon} />
+              )}
             </ActionIcon>
           </Group>
         </Group>
@@ -94,9 +101,6 @@ export const Header = () => {
         className={classes.modal}
         fullScreen
       >
-        <ActionIcon mb={50} onClick={() => setOpened(false)}>
-          <IconX size={24} color="white" />
-        </ActionIcon>
         <Stack>
           {navItems.map((item, i) => (
             <Link key={i} href={item.href} passHref>

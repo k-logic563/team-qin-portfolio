@@ -6,7 +6,7 @@ import {
   ColorScheme,
 } from '@mantine/core'
 
-import { MainLayout } from '@/components/layout/MainLayout'
+import { MainLayout } from '@/components/Layout/MainLayout'
 
 import { themeConfigs } from '@/config/mantine'
 
