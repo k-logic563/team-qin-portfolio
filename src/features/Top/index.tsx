@@ -1,15 +1,17 @@
 import React from 'react'
-import Image from 'next/image'
 import {
   Box,
   createStyles,
   Title,
   Container,
-  Grid,
   Group,
   Text,
   Anchor,
+  Image,
 } from '@mantine/core'
+
+import { Blog } from '@/features/Top/Blog'
+import { Portfolio } from '@/features/Top/Portfolio'
 
 import { icons } from '@/constants/page'
 
@@ -20,12 +22,20 @@ const useStyles = createStyles((theme) => ({
     color: '#fff',
     position: 'relative',
   },
-  fvInner: {
+  fvWrapper: {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '100%',
+  },
+  fvInner: {
+    display: 'grid',
+    rowGap: '43px',
+    [theme.fn.largerThan('md')]: {
+      gridTemplateColumns: '1fr auto',
+      justifyContent: 'space-between',
+    },
   },
   fvTitle: {
     fontFamily: theme.fontFamilyMonospace,
@@ -42,33 +52,36 @@ export const Top = () => {
   const { classes } = useStyles()
 
   return (
-    <Box className={classes.fv}>
-      <Container size="xl" className={classes.fvInner}>
-        <Grid align="center" justify="space-between">
-          <Grid.Col sm={10}>
-            <Title order={1} className={classes.fvTitle}>
-              Shimabu IT University
-            </Title>
-            <Text className={classes.fvDesc}>
-              しまぶーのポートフォリオのためのページです
-            </Text>
-          </Grid.Col>
-          <Grid.Col sm={2}>
+    <>
+      <Box className={classes.fv}>
+        <Container size="lg" className={classes.fvWrapper}>
+          <Box className={classes.fvInner}>
+            <Box>
+              <Title order={1} className={classes.fvTitle}>
+                Shimabu IT University
+              </Title>
+              <Text className={classes.fvDesc}>
+                しまぶーのポートフォリオのためのページです
+              </Text>
+            </Box>
             <Group>
               {icons.map((icon) => (
                 <Anchor key={icon.name} href={icon.href}>
-                  <Image
-                    src={`/${icon.name}.svg`}
-                    alt=""
-                    width={icon.width}
-                    height={icon.height}
-                  />
+                  <Image src={`/assets/${icon.name}.svg`} alt="" />
                 </Anchor>
               ))}
             </Group>
-          </Grid.Col>
-        </Grid>
+          </Box>
+        </Container>
+      </Box>
+      <Box pt={80} pb={100}>
+        <Container size="lg">
+          <Blog />
+        </Container>
+      </Box>
+      <Container size="lg">
+        <Portfolio />
       </Container>
-    </Box>
+    </>
   )
 }

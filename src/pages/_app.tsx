@@ -4,13 +4,39 @@ import {
   MantineProvider,
   ColorSchemeProvider,
   ColorScheme,
+  Global,
 } from '@mantine/core'
 
 import { MainLayout } from '@/components/Layout/MainLayout'
 
 import { themeConfigs } from '@/config/mantine'
 
-import '@/styles/globals.css'
+const MyGlobalStyles: React.FC = () => (
+  <Global
+    styles={(theme) => ({
+      '*, *::before, *::after': {
+        boxSizing: 'border-box',
+        margin: 0,
+        padding: 0,
+      },
+      body: {
+        ...theme.fn.fontStyles(),
+        backgroundColor:
+          theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
+        color:
+          theme.colorScheme === 'dark' ? theme.white : theme.colors.dark[6],
+        lineHeight: theme.lineHeight,
+      },
+      'a:not(.mantine-Button-root)': {
+        color: 'inherit',
+        textDecoration: 'none',
+        '&:hover': {
+          opacity: 0.6,
+        },
+      },
+    })}
+  />
+)
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
@@ -22,12 +48,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
     >
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{ ...themeConfigs, colorScheme }}
-      >
+      <MantineProvider theme={{ ...themeConfigs, colorScheme }}>
         <MainLayout>
+          <MyGlobalStyles />
           <Component {...pageProps} />
         </MainLayout>
       </MantineProvider>

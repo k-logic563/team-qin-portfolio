@@ -2,7 +2,6 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 
 import { Top } from '@/features/Top'
-import { LinkButton } from '@/components/Element/Button/LinkButton'
 
 const Home: NextPage = () => {
   return (
@@ -14,7 +13,6 @@ const Home: NextPage = () => {
       </Head>
       <main>
         <Top />
-        <LinkButton href="/blog">View All</LinkButton>
       </main>
     </div>
   )

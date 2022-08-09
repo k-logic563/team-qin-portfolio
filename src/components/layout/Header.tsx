@@ -16,23 +16,20 @@ import { IconMoon, IconSun } from '@tabler/icons'
 
 import { navItems } from '@/constants/page'
 
-const useStyles = createStyles((theme, { isDark }: { isDark: boolean }) => ({
+const useStyles = createStyles((theme) => ({
   logo: {
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
     fontSize: '18px',
-    color: isDark ? 'white' : theme.colors.dark[9],
   },
   icon: {
     borderColor: theme.colors.dark[0],
-    color: isDark ? 'white' : theme.colors.dark[9],
   },
   link: {
     textDecoration: 'none',
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
     fontSize: '18px',
-    color: isDark ? 'white' : theme.colors.dark[9],
   },
   modal: {
     '.mantine-Modal-modal': {
@@ -53,15 +50,15 @@ export const Header = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   const isDark = useMemo(() => colorScheme === 'dark', [colorScheme])
-  const { classes } = useStyles({ isDark })
+  const { classes } = useStyles()
 
   return (
     <>
-      <Container size="xl" py={20}>
+      <Container size="lg" py={20}>
         <Group position="apart">
           <MediaQuery largerThan="md" styles={{ display: 'none' }}>
             <Burger
-              color={opened ? '#fff' : 'black'}
+              color={opened || isDark ? '#fff' : 'black'}
               opened={opened}
               onClick={() => setOpened((x) => !x)}
               sx={{
@@ -84,6 +81,9 @@ export const Header = () => {
               variant="outline"
               radius={8}
               onClick={() => toggleColorScheme()}
+              sx={(theme) => ({
+                color: isDark ? theme.white : theme.colors.dark[6],
+              })}
             >
               {isDark ? (
                 <IconSun size={16} className={classes.icon} />

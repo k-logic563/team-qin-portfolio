@@ -8,7 +8,7 @@ export const themeConfigs = {
     Container: {
       defaultProps: {
         sizes: {
-          xl: 1440,
+          lg: 1000,
         },
       },
     },
