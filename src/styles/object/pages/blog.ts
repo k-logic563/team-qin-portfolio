@@ -14,4 +14,16 @@ export const useStyles = createStyles((theme) => ({
     fontSize: '12px',
     margin: 0,
   },
+  contents: {
+    'ul, ol': {
+      listStylePosition: 'inside',
+      margin: '1em 0',
+    },
+    p: {
+      marginBottom: '1em',
+    },
+    'h1, h2, h3, h4': {
+      margin: '1.5em 0 1em',
+    },
+  },
 }))
