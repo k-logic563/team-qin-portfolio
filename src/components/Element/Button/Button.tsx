@@ -10,7 +10,12 @@ export const Button: React.FC<Props> = ({
   children,
 }) => {
   return (
-    <MButton type={type} radius={radius} color={color}>
+    <MButton
+      type={type}
+      radius={radius}
+      color={color}
+      sx={{ fontFamily: "'Open Sans', sans-serif" }}
+    >
       {children}
     </MButton>
   )

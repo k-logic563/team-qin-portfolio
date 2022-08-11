@@ -14,7 +14,12 @@ export const LinkButton: React.FC<Props> = ({
 }) => {
   return (
     <Link href={href} passHref>
-      <Button component="a" radius={radius} color={color}>
+      <Button
+        component="a"
+        radius={radius}
+        color={color}
+        sx={{ fontFamily: "'Open Sans', sans-serif" }}
+      >
         {children}
       </Button>
     </Link>
