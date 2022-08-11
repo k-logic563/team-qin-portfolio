@@ -74,9 +74,7 @@ export const Header = () => {
       >
         <Stack>
           {navItems.map((item, i) => (
-            <Link key={i} href={item.href} passHref>
-              <a className={classes.modalLink}>{item.title}</a>
-            </Link>
+            <a key={i} href={item.href} className={classes.modalLink}>{item.title}</a>
           ))}
         </Stack>
       </Modal>
