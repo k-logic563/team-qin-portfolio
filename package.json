@@ -13,6 +13,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
+      "yarn tsc",
       "yarn lint"
     ]
   },
