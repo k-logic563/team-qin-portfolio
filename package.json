@@ -13,7 +13,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
-      "bash -c yarn tsc",
+      "bash -c 'yarn tsc'",
       "yarn lint"
     ]
   },
