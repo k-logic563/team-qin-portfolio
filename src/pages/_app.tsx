@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import {
   MantineProvider,
@@ -39,9 +39,16 @@ const MyGlobalStyles: React.FC = () => (
 )
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
+  const [isMounted, setIsMounted] = useState(false)
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
+
+  if (!isMounted) return null
 
   return (
     <ColorSchemeProvider
