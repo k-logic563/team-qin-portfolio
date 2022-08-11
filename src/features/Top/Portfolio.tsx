@@ -1,38 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
-import { Box, Image, Title, Text, Center, createStyles } from '@mantine/core'
+import { Box, Image, Title, Text, Center } from '@mantine/core'
 
-import { Heading2 } from '@/components/Element/Heading/Heading2'
+import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
-const useStyles = createStyles((theme) => ({
-  list: {
-    display: 'grid',
-    gap: '40px 20px',
-    [theme.fn.largerThan('xs')]: {
-      gridTemplateColumns: 'repeat(2, 1fr)',
-    },
-    [theme.fn.largerThan('md')]: {
-      gridTemplateColumns: 'repeat(3, 1fr)',
-    },
-  },
-  title: {
-    fontSize: '22px',
-    fontWeight: 'bold',
-  },
-  date: {
-    color: theme.colors.dark[2],
-    fontSize: '12px',
-  },
-}))
+import * as styles from '@/styles'
 
 export const Portfolio = () => {
-  const { classes } = useStyles()
+  const { classes } = styles.portfolio.useStyles()
 
   return (
     <>
       <Box mb={24}>
-        <Heading2>Portfolio</Heading2>
+        <Heading order={2}>Portfolio</Heading>
       </Box>
       <Box mb={40} className={classes.list}>
         {[...Array(6).keys()].map((x) => (

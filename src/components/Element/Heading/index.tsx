@@ -1,12 +1,14 @@
 import React from 'react'
-import { Title, createStyles } from '@mantine/core'
+import { Title, createStyles, TitleOrder } from '@mantine/core'
 
 type Props = {
   children: React.ReactNode
+  order: TitleOrder
 }
 
 const useStyles = createStyles((theme) => ({
   title: {
+    fontSize: '26px',
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
     paddingBottom: '20px',
@@ -14,8 +16,12 @@ const useStyles = createStyles((theme) => ({
   },
 }))
 
-export const Heading2: React.FC<Props> = ({ children }) => {
+export const Heading: React.FC<Props> = ({ children, order }) => {
   const { classes } = useStyles()
 
-  return <Title className={classes.title}>{children}</Title>
+  return (
+    <Title className={classes.title} order={order}>
+      {children}
+    </Title>
+  )
 }

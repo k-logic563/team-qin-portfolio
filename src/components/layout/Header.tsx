@@ -3,9 +3,7 @@ import Link from 'next/link'
 import {
   Container,
   Group,
-  Text,
   ActionIcon,
-  createStyles,
   useMantineColorScheme,
   Stack,
   Modal,
@@ -15,42 +13,13 @@ import {
 import { IconMoon, IconSun } from '@tabler/icons'
 
 import { navItems } from '@/constants/page'
-
-const useStyles = createStyles((theme) => ({
-  logo: {
-    fontFamily: theme.fontFamilyMonospace,
-    fontWeight: 700,
-    fontSize: '18px',
-  },
-  icon: {
-    borderColor: theme.colors.dark[0],
-  },
-  link: {
-    textDecoration: 'none',
-    fontFamily: theme.fontFamilyMonospace,
-    fontWeight: 700,
-    fontSize: '18px',
-  },
-  modal: {
-    '.mantine-Modal-modal': {
-      backgroundColor: theme.colors.pink[6],
-      paddingTop: '90px',
-    },
-  },
-  modalLink: {
-    color: 'white',
-    textDecoration: 'none',
-    fontSize: '28px',
-    fontWeight: 700,
-    fontFamily: theme.fontFamilyMonospace,
-  },
-}))
+import * as styles from '@/styles'
 
 export const Header = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
   const isDark = useMemo(() => colorScheme === 'dark', [colorScheme])
-  const { classes } = useStyles()
+  const { classes } = styles.header.useStyles()
 
   return (
     <>
@@ -66,7 +35,9 @@ export const Header = () => {
               }}
             />
           </MediaQuery>
-          <Text className={classes.logo}>Shimabu IT University</Text>
+          <Link href="/" passHref>
+            <a className={classes.logo}>Shimabu IT University</a>
+          </Link>
           <Group>
             <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
               <Group>

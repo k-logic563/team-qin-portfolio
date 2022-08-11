@@ -1,33 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
-import { Box, Stack, Center, createStyles } from '@mantine/core'
+import { Box, Stack, Center } from '@mantine/core'
 
-import { Heading2 } from '@/components/Element/Heading/Heading2'
+import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
-const useStyles = createStyles((theme) => ({
-  title: {
-    fontWeight: 700,
-    marginBottom: '8px',
-    fontSize: '22px',
-  },
-  description: {
-    margin: '0 0 8px',
-  },
-  date: {
-    color: theme.colors.dark[2],
-    fontSize: '12px',
-    margin: 0,
-  },
-}))
+import * as styles from '@/styles'
 
 export const Blog = () => {
-  const { classes } = useStyles()
+  const { classes } = styles.blog.useStyles()
 
   return (
     <>
       <Box mb={24}>
-        <Heading2>Blog</Heading2>
+        <Heading order={2}>Blog</Heading>
       </Box>
       <Stack mb={24}>
         {[...Array(5).keys()].map((x) => (

@@ -27,7 +27,7 @@ const MyGlobalStyles: React.FC = () => (
           theme.colorScheme === 'dark' ? theme.white : theme.colors.dark[6],
         lineHeight: theme.lineHeight,
       },
-      'a:not(.mantine-Button-root)': {
+      a: {
         color: 'inherit',
         textDecoration: 'none',
         '&:hover': {
