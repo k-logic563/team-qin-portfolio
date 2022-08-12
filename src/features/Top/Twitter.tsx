@@ -33,7 +33,7 @@ export const Twitter = () => {
       </Stack>
       <Center>
         <LinkButton href="https://twitter.com/webD_hello21" target="_blank">
-          View All
+          View On Twitter
         </LinkButton>
       </Center>
     </>
