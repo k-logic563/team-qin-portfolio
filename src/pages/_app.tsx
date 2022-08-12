@@ -6,6 +6,7 @@ import {
   ColorScheme,
   Global,
 } from '@mantine/core'
+import { useLocalStorage } from '@mantine/hooks'
 
 import { MainLayout } from '@/components/Layout/MainLayout'
 
@@ -40,7 +41,11 @@ const MyGlobalStyles: React.FC = () => (
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isMounted, setIsMounted] = useState(false)
-  const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
+  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
+    key: 'color-scheme',
+    defaultValue: 'light',
+    getInitialValueInEffect: true
+  })
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
 
