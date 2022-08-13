@@ -25,11 +25,15 @@ export const useStyles = createStyles((theme) => ({
   fvTitle: {
     fontFamily: theme.fontFamilyMonospace,
     fontWeight: 700,
-    marginBottom: '4px',
+    marginBottom: '.2em',
     fontSize: 'clamp(28px, 5vw, 36px)',
     lineHeight: 1,
   },
   fvDesc: {
     fontWeight: 700,
+    fontSize: '14px',
+    [theme.fn.largerThan('md')]: {
+      fontSize: '16px',
+    },
   },
 }))
