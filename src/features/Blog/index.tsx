@@ -44,18 +44,19 @@ export const Blog = () => {
       >
         <Stack mb={24}>
           {list.map((x) => (
-            <dl key={x}>
-              <dt className={classes.title}>
-                <Link href="#" passHref>
-                  <a className={classes.title}>This is a header</a>
-                </Link>
-              </dt>
-              <dd className={classes.description}>
-                Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                amet sint. Velit officia consequat duis enim velit mollit.{' '}
-              </dd>
-              <dd className={classes.date}>2022.07.11</dd>
-            </dl>
+            <Link key={x} href="#" passHref>
+              <a>
+                <dl>
+                  <dt className={classes.title}>This is a header</dt>
+                  <dd className={classes.description}>
+                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                    do amet sint. Velit officia consequat duis enim velit
+                    mollit.{' '}
+                  </dd>
+                  <dd className={classes.date}>2022.07.11</dd>
+                </dl>
+              </a>
+            </Link>
           ))}
         </Stack>
       </InfiniteScroll>
