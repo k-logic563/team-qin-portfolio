@@ -8,9 +8,8 @@ import {
   Stack,
   Modal,
   MediaQuery,
-  Burger,
 } from '@mantine/core'
-import { IconMoon, IconSun } from '@tabler/icons'
+import { IconMoon, IconSun, IconMenu2, IconX } from '@tabler/icons'
 
 import { navItems } from '@/constants/page'
 import * as styles from '@/styles'
@@ -23,17 +22,10 @@ export const Header = () => {
 
   return (
     <>
-      <Container size="lg" py={20}>
+      <Container size="lg">
         <Group position="apart">
           <MediaQuery largerThan="md" styles={{ display: 'none' }}>
-            <Burger
-              color={opened || isDark ? '#fff' : 'black'}
-              opened={opened}
-              onClick={() => setOpened((x) => !x)}
-              sx={{
-                zIndex: 1000,
-              }}
-            />
+            <IconMenu2 onClick={() => setOpened((x) => !x)} />
           </MediaQuery>
           <Link href="/" passHref>
             <a className={classes.logo}>Shimabu IT University</a>
@@ -72,6 +64,7 @@ export const Header = () => {
         className={classes.modal}
         fullScreen
       >
+        <IconX className={classes.modalIcon} onClick={() => setOpened(false)} />
         <Stack>
           {navItems.map((item, i) => (
             <a key={i} href={item.href} className={classes.modalLink}>

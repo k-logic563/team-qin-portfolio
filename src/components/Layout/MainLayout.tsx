@@ -1,4 +1,5 @@
 import React from 'react'
+import { Box } from '@mantine/core'
 
 import { Header } from './Header'
 import { Footer } from './Footer'
@@ -13,14 +14,16 @@ export const MainLayout: React.FC<Props> = ({ children }) => {
   const { classes } = styles.main.useStyles()
 
   return (
-    <div className={classes.wrapper}>
-      <div>
-        <Header />
-      </div>
-      <main>{children}</main>
-      <div>
+    <Box className={classes.wrapper}>
+      <Box className={classes.header}>
+        <Box>
+          <Header />
+        </Box>
+      </Box>
+      <main className={classes.main}>{children}</main>
+      <Box>
         <Footer />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }

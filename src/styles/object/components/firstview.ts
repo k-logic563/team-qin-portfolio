@@ -4,7 +4,7 @@ export const useStyles = createStyles((theme) => ({
   fv: {
     height: '250px',
     backgroundColor: theme.colors.pink[6],
-    color: '#fff',
+    color: theme.white,
     position: 'relative',
   },
   fvWrapper: {

@@ -18,11 +18,14 @@ export const useStyles = createStyles((theme) => ({
   modal: {
     '.mantine-Modal-modal': {
       backgroundColor: theme.colors.pink[6],
-      paddingTop: '90px',
     },
   },
+  modalIcon: {
+    color: theme.white,
+    marginBottom: '50px',
+  },
   modalLink: {
-    color: 'white',
+    color: theme.white,
     textDecoration: 'none',
     fontSize: '28px',
     fontWeight: 700,
