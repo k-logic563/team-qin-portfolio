@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import {
   Container,
@@ -18,7 +18,6 @@ import * as styles from '@/styles'
 export const Header = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme()
   const [opened, setOpened] = useState(false)
-  const isDark = useMemo(() => colorScheme === 'dark', [colorScheme])
   const { classes } = styles.header.useStyles()
 
   return (
@@ -46,10 +45,13 @@ export const Header = () => {
               radius={8}
               onClick={() => toggleColorScheme()}
               sx={(theme) => ({
-                color: isDark ? theme.white : theme.colors.dark[6],
+                color:
+                  theme.colorScheme === 'dark'
+                    ? theme.white
+                    : theme.colors.dark[6],
               })}
             >
-              {isDark ? (
+              {colorScheme === 'dark' ? (
                 <IconSun size={16} className={classes.icon} />
               ) : (
                 <IconMoon size={16} className={classes.icon} />
@@ -69,6 +71,7 @@ export const Header = () => {
           size={24}
           iconSize={24}
           mb={50}
+          sx={(theme) => ({ color: theme.white })}
           onClick={() => setOpened(false)}
         />
         <Stack>
