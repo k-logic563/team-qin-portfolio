@@ -8,8 +8,9 @@ import {
   Stack,
   Modal,
   MediaQuery,
+  CloseButton,
 } from '@mantine/core'
-import { IconMoon, IconSun, IconMenu2, IconX } from '@tabler/icons'
+import { IconMoon, IconSun, IconMenu2 } from '@tabler/icons'
 
 import { navItems } from '@/constants/page'
 import * as styles from '@/styles'
@@ -64,12 +65,19 @@ export const Header = () => {
         className={classes.modal}
         fullScreen
       >
-        <IconX className={classes.modalIcon} onClick={() => setOpened(false)} />
+        <CloseButton
+          size={24}
+          iconSize={24}
+          mb={50}
+          onClick={() => setOpened(false)}
+        />
         <Stack>
           {navItems.map((item, i) => (
-            <a key={i} href={item.href} className={classes.modalLink}>
-              {item.title}
-            </a>
+            <Link key={i} href={item.href}>
+              <a className={classes.modalLink} onClick={() => setOpened(false)}>
+                {item.title}
+              </a>
+            </Link>
           ))}
         </Stack>
       </Modal>

@@ -20,10 +20,6 @@ export const useStyles = createStyles((theme) => ({
       backgroundColor: theme.colors.pink[6],
     },
   },
-  modalIcon: {
-    color: theme.white,
-    marginBottom: '50px',
-  },
   modalLink: {
     color: theme.white,
     textDecoration: 'none',
