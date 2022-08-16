@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import { Button, ButtonProps } from '@mantine/core'
 
+import * as styles from '@/styles'
+
 type Props = ButtonProps & {
   href: string
   target?: string
@@ -9,19 +11,18 @@ type Props = ButtonProps & {
 
 export const LinkButton: React.FC<Props> = ({
   radius = 'xl',
-  color = 'dark',
   href,
   target,
   children,
 }) => {
+  const { classes } = styles.button.useStyles()
   return (
     <Link href={href} passHref>
       <Button
         target={target}
         component="a"
         radius={radius}
-        color={color}
-        sx={{ fontFamily: "'Open Sans', sans-serif" }}
+        className={classes.button}
       >
         {children}
       </Button>
