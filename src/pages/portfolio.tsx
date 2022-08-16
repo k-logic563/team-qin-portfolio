@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { Portfolio } from '@/features/Portfolio'
 import { AppHead } from '@/components/Element/Head'
 
-const contact: NextPage = () => {
+const PortfolioPage: NextPage = () => {
   return (
     <>
       <AppHead
@@ -15,4 +15,4 @@ const contact: NextPage = () => {
   )
 }
 
-export default contact
+export default PortfolioPage

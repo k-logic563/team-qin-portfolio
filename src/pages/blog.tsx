@@ -3,7 +3,7 @@ import { NextPage } from 'next'
 import { Blog } from '@/features/Blog'
 import { AppHead } from '@/components/Element/Head'
 
-const blog: NextPage = () => {
+const BlogPage: NextPage = () => {
   return (
     <>
       <AppHead
@@ -15,4 +15,4 @@ const blog: NextPage = () => {
   )
 }
 
-export default blog
+export default BlogPage

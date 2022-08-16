@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import { About } from '@/features/About'
 import { AppHead } from '@/components/Element/Head'
 
-const about: NextPage = () => {
+const AboutPage: NextPage = () => {
   return (
     <>
       <AppHead
@@ -16,4 +16,4 @@ const about: NextPage = () => {
   )
 }
 
-export default about
+export default AboutPage

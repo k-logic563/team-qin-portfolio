@@ -1,21 +1,21 @@
 import React from 'react'
 import { NextPage } from 'next'
 
-import { Detail } from '@/features/Blog/Detail'
+import { BlogId } from '@/features/Blog/Detail'
 import { AppHead } from '@/components/Element/Head'
 
 // NOTE: MicroCMS SSG ISR
 
-const BlogPage: NextPage = () => {
+const BlogIdPage: NextPage = () => {
   return (
     <>
       <AppHead
         title="仮ブログ詳細ページ"
         description="仮ブログディスクリプション"
       />
-      <Detail />
+      <BlogId />
     </>
   )
 }
 
-export default BlogPage
+export default BlogIdPage

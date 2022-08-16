@@ -6,7 +6,7 @@ import { Heading } from '@/components/Element/Heading'
 import { useStyles } from '@/styles/object/pages/blog'
 import { mockContents } from './mock'
 
-export const Detail = () => {
+export const BlogId = () => {
   const { classes } = useStyles()
 
   return (
