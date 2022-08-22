@@ -9,9 +9,10 @@ import { Textarea } from './TextArea'
 type Props = {
   handleSubmit: (values: typeof initialValues) => Promise<void>
   form: UseFormReturnType<typeof initialValues>
+  loading: boolean
 }
 
-export const Form: React.FC<Props> = ({ form, handleSubmit }) => {
+export const Form: React.FC<Props> = ({ form, handleSubmit, loading }) => {
   return (
     <form onSubmit={form.onSubmit(handleSubmit)}>
       <Box mb={20}>
@@ -36,7 +37,9 @@ export const Form: React.FC<Props> = ({ form, handleSubmit }) => {
         />
       </Box>
       <Center>
-        <Button type="submit">Send Message</Button>
+        <Button type="submit" loading={loading}>
+          Send Message
+        </Button>
       </Center>
     </form>
   )

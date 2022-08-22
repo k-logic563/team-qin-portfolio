@@ -1,4 +1,6 @@
-import { Container, Box } from '@mantine/core'
+import { useState } from 'react'
+import { Container, Box, Text } from '@mantine/core'
+import axios from 'axios'
 import { useForm } from '@mantine/form'
 
 import { Form } from './Form'
@@ -7,6 +9,7 @@ import { Heading } from '@/components/Element/Heading'
 import { emailRegExp, initialValues } from '@/constants/form'
 
 export const Contact = () => {
+  const [mode, setMode] = useState('form')
   const form = useForm({
     initialValues,
     validate: {
@@ -26,7 +29,14 @@ export const Contact = () => {
   })
 
   const handleSubmit = async (values: typeof initialValues) => {
-    console.table(values)
+    setMode('pending')
+    try {
+      await axios.post<{ contents: string }>('/api/contact', values)
+      setMode('done')
+    } catch (e) {
+      console.error(e)
+      setMode('form')
+    }
   }
 
   return (
@@ -34,7 +44,15 @@ export const Contact = () => {
       <Box mb={24}>
         <Heading order={1}>Contact</Heading>
       </Box>
-      <Form handleSubmit={handleSubmit} form={form} />
+      {mode === 'done' ? (
+        <Text>お問い合わせ完了しました。</Text>
+      ) : (
+        <Form
+          handleSubmit={handleSubmit}
+          form={form}
+          loading={mode === 'pending'}
+        />
+      )}
     </Container>
   )
 }
