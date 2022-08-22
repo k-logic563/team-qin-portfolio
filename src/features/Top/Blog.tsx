@@ -1,13 +1,19 @@
 import React from 'react'
 import Link from 'next/link'
-import { Box, Stack, Center } from '@mantine/core'
+import { Box, Stack, Center, Text } from '@mantine/core'
 
 import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
 import * as styles from '@/styles'
+import { BlogContent } from '@/types'
+import { formatDate } from '@/utils/format'
 
-export const Blog = () => {
+type Props = {
+  blogs: BlogContent['contents']
+}
+
+export const Blog: React.FC<Props> = ({ blogs }) => {
   const { classes } = styles.blog.useStyles()
 
   return (
@@ -15,25 +21,32 @@ export const Blog = () => {
       <Box mb={24}>
         <Heading order={2}>Blog</Heading>
       </Box>
-      <Stack mb={24}>
-        {[...Array(5).keys()].map((x) => (
-          <Link key={x} href="#" passHref>
-            <a>
-              <dl>
-                <dt className={classes.title}>This is a header</dt>
-                <dd className={classes.description}>
-                  Amet minim mollit non deserunt ullamco est sit aliqua dolor do
-                  amet sint. Velit officia consequat duis enim velit mollit.{' '}
-                </dd>
-                <dd className={classes.date}>2022.07.11</dd>
-              </dl>
-            </a>
-          </Link>
-        ))}
-      </Stack>
-      <Center>
-        <LinkButton href="/blog">View All</LinkButton>
-      </Center>
+      {blogs.length !== 0 ? (
+        <>
+          <Stack mb={24}>
+            {blogs.map((x) => (
+              <Link key={x.id} href={`/blog/${x.id}`} passHref>
+                <a>
+                  <dl>
+                    <dt className={classes.title}>{x.title}</dt>
+                    <dd className={classes.description}>{x.description}</dd>
+                    <dd className={classes.date}>
+                      <time dateTime={formatDate(x.publishedAt)}>
+                        {formatDate(x.publishedAt)}
+                      </time>
+                    </dd>
+                  </dl>
+                </a>
+              </Link>
+            ))}
+          </Stack>
+          <Center>
+            <LinkButton href="/blog">View All</LinkButton>
+          </Center>
+        </>
+      ) : (
+        <Text>No Posts.</Text>
+      )}
     </>
   )
 }

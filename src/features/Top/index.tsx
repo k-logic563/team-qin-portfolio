@@ -17,8 +17,13 @@ import { Twitter } from '@/features/Top/Twitter'
 import { icons } from '@/constants/page'
 
 import * as styles from '@/styles'
+import { BlogContent } from '@/types'
 
-export const Top = () => {
+type Props = {
+  blogs: BlogContent['contents']
+}
+
+export const Top: React.FC<Props> = ({ blogs }) => {
   const { classes } = styles.firstview.useStyles()
 
   return (
@@ -46,7 +51,7 @@ export const Top = () => {
       </Box>
       <Box pt={80} pb={100}>
         <Container size="lg">
-          <Blog />
+          <Blog blogs={blogs} />
         </Container>
       </Box>
       <Container size="lg">
