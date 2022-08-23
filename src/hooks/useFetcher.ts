@@ -1,6 +1,5 @@
 import useSWR from 'swr'
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json())
+import { fetcher } from '@/utils/fetcher'
 
 export const useFetcher = <T>(slug: string) => {
   const { data, error } = useSWR<T>(`/api/${slug}`, fetcher, {
