@@ -1,4 +1,4 @@
-import { NextPage, InferGetServerSidePropsType } from 'next'
+import { NextPage, InferGetStaticPropsType } from 'next'
 
 import { Blog } from '@/features/Blog'
 import { AppHead } from '@/components/Element/Head'
@@ -6,15 +6,16 @@ import { AppHead } from '@/components/Element/Head'
 import { client } from '@/lib/axios'
 import { BlogContent } from '@/types'
 
-export type BlogProps = InferGetServerSidePropsType<typeof getServerSideProps>
+export type BlogProps = InferGetStaticPropsType<typeof getStaticProps>
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const { data } = await client.get<BlogContent>('blogs')
 
   return {
     props: {
       response: data,
     },
+    revalidate: 10,
   }
 }
 
