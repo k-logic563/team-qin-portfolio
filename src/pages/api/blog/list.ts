@@ -8,6 +8,7 @@ const getBlogs = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { data } = await client.get<BlogContent>('blogs', {
     params: {
+      limit: Number(query.limit) ?? 10,
       offset: Number(query.offset) ?? 0,
     },
   })

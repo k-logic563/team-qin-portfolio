@@ -7,7 +7,8 @@ type Props = {
 }
 
 const ErrorMessage = ({ error }: FallbackProps) => {
-  return <Text>{error.message}</Text>
+  console.error(error.message)
+  return <Text>データ取得に問題が発生しました</Text>
 }
 
 export const ErrorWrapper: React.FC<Props> = ({ children }) => {

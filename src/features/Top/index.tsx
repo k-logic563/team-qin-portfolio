@@ -52,7 +52,7 @@ export const Top = () => {
             <Heading order={2}>Blog</Heading>
           </Box>
           <ErrorWrapper>
-            <Suspense fallback={<Text>loading...</Text>}>
+            <Suspense fallback={<Text>読み込み中です。</Text>}>
               <Blog />
             </Suspense>
           </ErrorWrapper>
