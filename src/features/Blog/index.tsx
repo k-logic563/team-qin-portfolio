@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
+import axios from 'axios'
 import { Container, Box, Stack, Loader as MLoader, Center } from '@mantine/core'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Heading } from '@/components/Element/Heading'
 
 import { useStyles } from '@/styles/object/pages/blog'
-
-const perItems = 10
+import { formatDate } from '@/utils/format'
+import { BlogContent } from '@/types'
 
 const Loader = () => {
   return (
@@ -17,18 +18,31 @@ const Loader = () => {
   )
 }
 
-export const Blog = () => {
+type Props = {
+  contents: BlogContent['contents']
+  totalCount: number
+}
+
+const limit = 10
+
+export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
   const { classes } = useStyles()
-  const [list, setList] = useState([...Array(perItems).keys()].map((_, i) => i))
+  const [pageNumber, setPageNumber] = useState(1)
+  const [items, setItems] = useState<BlogContent['contents']>(contents)
 
-  const fetchData = () => {
-    // ここでデータ取得
-    // offsetやらpageクエリで対応したデータをフィルタリングする
-    setTimeout(() => {
-      const data = [...Array(perItems).keys()].map((_, i) => i)
+  const isFetchAll = useMemo(() => {
+    return totalCount > items.length || totalCount !== items.length
+  }, [totalCount, items])
 
-      setList([...list, ...data])
-    }, 1000)
+  const fetchData = async () => {
+    const { data } = await axios.get<BlogContent>('/api/blog/list', {
+      params: {
+        offset: pageNumber * limit,
+      },
+    })
+
+    setItems([...items, ...data.contents])
+    setPageNumber(pageNumber + 1)
   }
 
   return (
@@ -37,23 +51,23 @@ export const Blog = () => {
         <Heading order={1}>Blog</Heading>
       </Box>
       <InfiniteScroll
-        dataLength={list.length}
+        dataLength={items.length}
         next={fetchData}
         loader={<Loader />}
-        hasMore={true}
+        hasMore={isFetchAll}
       >
         <Stack mb={24}>
-          {list.map((x) => (
-            <Link key={x} href="#" passHref>
+          {items.map((x) => (
+            <Link key={x.id} href={`/blog/${x.id}`} passHref>
               <a>
                 <dl>
-                  <dt className={classes.title}>This is a header</dt>
-                  <dd className={classes.description}>
-                    Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                    do amet sint. Velit officia consequat duis enim velit
-                    mollit.{' '}
+                  <dt className={classes.title}>{x.title}</dt>
+                  <dd className={classes.description}>{x.description}</dd>
+                  <dd className={classes.date}>
+                    <time dateTime={formatDate(x.publishedAt)}>
+                      {formatDate(x.publishedAt)}
+                    </time>
                   </dd>
-                  <dd className={classes.date}>2022.07.11</dd>
                 </dl>
               </a>
             </Link>

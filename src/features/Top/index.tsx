@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import {
   Box,
   Container,
@@ -13,17 +13,14 @@ import { Blog } from '@/features/Top/Blog'
 import { Portfolio } from '@/features/Top/Portfolio'
 import { Github } from '@/features/Top/Github'
 import { Twitter } from '@/features/Top/Twitter'
+import { Heading } from '@/components/Element/Heading'
+import { ErrorWrapper } from '@/components/Element/Error/ErrorWrapper'
 
 import { icons } from '@/constants/page'
 
 import * as styles from '@/styles'
-import { BlogContent } from '@/types'
 
-type Props = {
-  blogs: BlogContent['contents']
-}
-
-export const Top: React.FC<Props> = ({ blogs }) => {
+export const Top = () => {
   const { classes } = styles.firstview.useStyles()
 
   return (
@@ -51,7 +48,14 @@ export const Top: React.FC<Props> = ({ blogs }) => {
       </Box>
       <Box pt={80} pb={100}>
         <Container size="lg">
-          <Blog blogs={blogs} />
+          <Box mb={24}>
+            <Heading order={2}>Blog</Heading>
+          </Box>
+          <ErrorWrapper>
+            <Suspense fallback={<Text>loading...</Text>}>
+              <Blog />
+            </Suspense>
+          </ErrorWrapper>
         </Container>
       </Box>
       <Container size="lg">

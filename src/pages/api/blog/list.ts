@@ -1,10 +1,16 @@
-import { NextApiResponse } from 'next'
+import { NextApiResponse, NextApiRequest } from 'next'
 
 import { client } from '@/lib/axios'
 import { BlogContent } from '@/types'
 
-const getBlogs = async (_: unknown, res: NextApiResponse) => {
-  const { data } = await client.get<BlogContent>('blogs')
+const getBlogs = async (req: NextApiRequest, res: NextApiResponse) => {
+  const query = req.query
+
+  const { data } = await client.get<BlogContent>('blogs', {
+    params: {
+      offset: Number(query.offset) ?? 0,
+    },
+  })
   return res.status(200).json({ contents: data.contents })
 }
 
