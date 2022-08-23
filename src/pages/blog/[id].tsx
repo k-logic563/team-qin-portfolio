@@ -37,6 +37,8 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   })
   const $ = cheerio.load(data.content, null, false)
 
+  // TODO: code highlight
+
   // 記事データを集約
   const props = {
     data: { ...data, content: $.html() },
