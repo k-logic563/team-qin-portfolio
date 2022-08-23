@@ -25,5 +25,8 @@ export const useStyles = createStyles((theme) => ({
     'h1, h2, h3, h4': {
       margin: '1.5em 0 1em',
     },
+    img: {
+      maxWidth: '100%',
+    },
   },
 }))
