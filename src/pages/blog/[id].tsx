@@ -1,12 +1,56 @@
 import React from 'react'
-import { NextPage } from 'next'
+import cheerio from 'cheerio'
+import { ParsedUrlQuery } from 'querystring'
+import { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
 
 import { BlogId } from '@/features/Blog/Detail'
 import { AppHead } from '@/components/Element/Head'
 
-// NOTE: MicroCMS SSG ISR
+import { BlogContent } from '@/types'
+import { client } from '@/lib/axios'
 
-const BlogIdPage: NextPage = () => {
+type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
+type Params = ParsedUrlQuery & {
+  id: string
+}
+
+const isDraft = (item: any): item is { draftKey: string } =>
+  !!(item?.draftKey && typeof item.draftKey === 'string')
+
+export const getStaticPaths = async () => {
+  const { data } = await client.get<BlogContent>('blogs')
+  const paths = data.contents.map((x) => `/blog/${x.id}`)
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
+  const { params, previewData } = ctx
+  const draftKey = isDraft(previewData) ? previewData.draftKey : ''
+  const { data } = await client.get(`/blogs/${params?.id}`, {
+    params: {
+      draftKey,
+    },
+  })
+  const $ = cheerio.load(data.content, null, false)
+
+  // 記事データを集約
+  const props = {
+    data: { ...data, content: $.html() },
+  }
+
+  return {
+    props,
+    revalidate: 60,
+  }
+}
+
+const BlogIdPage: NextPage<BlogDetailProps> = ({ data }) => {
+  console.log(data)
+
   return (
     <>
       <AppHead
