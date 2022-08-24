@@ -12,7 +12,7 @@ import * as styles from '@/styles'
 
 export const Blog = () => {
   const { classes } = styles.blog.useStyles()
-  const { data, error } = useFetcher<BlogContent>('blog/list', { limit: 6 })
+  const { data, error } = useFetcher<BlogContent>('blog/list?limit=6')
 
   if (error) throw new Error(error)
 

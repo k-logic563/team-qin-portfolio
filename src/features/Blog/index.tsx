@@ -6,9 +6,11 @@ import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Heading } from '@/components/Element/Heading'
 
-import { useStyles } from '@/styles/object/pages/blog'
 import { formatDate } from '@/utils/format'
+import { sleep } from '@/utils/sleep'
 import { BlogContent } from '@/types'
+
+import { useStyles } from '@/styles/object/pages/blog'
 
 const Loader = () => {
   return (
@@ -35,6 +37,7 @@ export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
   }, [totalCount, items])
 
   const fetchData = async () => {
+    await sleep(1000)
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         offset: pageNumber * limit,
