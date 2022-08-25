@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import type { AppProps } from 'next/app'
-import NextNProgress from 'nextjs-progressbar'
 import {
   MantineProvider,
   ColorSchemeProvider,
@@ -66,14 +65,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <MantineProvider theme={{ ...themeConfigs, colorScheme }}>
         <MainLayout>
           <MyGlobalStyles />
-          <NextNProgress
-            color={theme.colors.pink[6]}
-            height={5}
-            showOnShallow={true}
-            options={{
-              showSpinner: false,
-            }}
-          />
           <Component {...pageProps} />
         </MainLayout>
       </MantineProvider>
