@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import type { AppProps } from 'next/app'
+import NextNProgress from 'nextjs-progressbar'
 import {
   MantineProvider,
   ColorSchemeProvider,
   ColorScheme,
   Global,
+  useMantineTheme,
 } from '@mantine/core'
 import { useLocalStorage } from '@mantine/hooks'
 
@@ -41,6 +43,7 @@ const MyGlobalStyles: React.FC = () => (
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [isMounted, setIsMounted] = useState(false)
+  const theme = useMantineTheme()
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: 'color-scheme',
     defaultValue: 'light',
@@ -63,6 +66,14 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <MantineProvider theme={{ ...themeConfigs, colorScheme }}>
         <MainLayout>
           <MyGlobalStyles />
+          <NextNProgress
+            color={theme.colors.pink[6]}
+            height={5}
+            showOnShallow={true}
+            options={{
+              showSpinner: false,
+            }}
+          />
           <Component {...pageProps} />
         </MainLayout>
       </MantineProvider>
