@@ -8,8 +8,8 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <AppHead
-        title="Aboutページ"
-        description="しまぶーのポートフォリオの紹介ページです"
+        title="About"
+        description="がんちゃんのポートフォリオの紹介ページです"
       />
       <About />
     </>

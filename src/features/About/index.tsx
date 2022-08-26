@@ -11,10 +11,12 @@ export const About = () => {
       </Box>
       <Box>
         <Title order={2} mb={24}>
-          Lightsound Shimabu{' '}
+          がんちゃん
         </Title>
-        <Text>
-          ITエンジニアYouTuber。神戸大学経営学部卒。未経験から独学でプログラミングを勉強し、新卒でヤフーに入社。2019年に株式会社GameHintを創業。
+        <Text sx={{ lineHeight: 1.8 }}>
+          システム開発会社にてフロントエンド業務などしています。
+          <br />
+          好きな名言は「え、何？とりあえずビール飲む？」です。
         </Text>
       </Box>
     </Container>

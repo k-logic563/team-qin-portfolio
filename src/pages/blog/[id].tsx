@@ -8,6 +8,7 @@ import { AppHead } from '@/components/Element/Head'
 
 import { BlogContent, Content } from '@/types'
 import { client } from '@/lib/axios'
+import { codeHighlight } from '@/utils/code-highlight'
 
 type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
@@ -37,7 +38,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   })
   const $ = cheerio.load(data.content, null, false)
 
-  // TODO: code highlight
+  codeHighlight($)
 
   // 記事データを集約
   const props = {
@@ -53,10 +54,7 @@ export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
 const BlogIdPage: NextPage<BlogDetailProps> = ({ data }) => {
   return (
     <>
-      <AppHead
-        title="仮ブログ詳細ページ"
-        description="仮ブログディスクリプション"
-      />
+      <AppHead title={data.title} description={data.description} />
       <BlogId {...data} />
     </>
   )

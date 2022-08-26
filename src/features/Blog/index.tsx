@@ -1,24 +1,17 @@
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
-import { Container, Box, Stack, Loader as MLoader, Center } from '@mantine/core'
+import { Container, Box, Stack, Center } from '@mantine/core'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Heading } from '@/components/Element/Heading'
+import { Loader } from '@/components/Element/Loader'
 
 import { formatDate } from '@/utils/format'
 import { sleep } from '@/utils/sleep'
 import { BlogContent } from '@/types'
 
 import { useStyles } from '@/styles/object/pages/blog'
-
-const Loader = () => {
-  return (
-    <Center mt={16}>
-      <MLoader color="pink" />
-    </Center>
-  )
-}
 
 type Props = {
   contents: BlogContent['contents']
@@ -37,7 +30,7 @@ export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
   }, [totalCount, items])
 
   const fetchData = async () => {
-    await sleep(1000)
+    await sleep(500)
     const { data } = await axios.get<BlogContent>('/api/blog/list', {
       params: {
         offset: pageNumber * limit,
@@ -56,7 +49,11 @@ export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
       <InfiniteScroll
         dataLength={items.length}
         next={fetchData}
-        loader={<Loader />}
+        loader={
+          <Center mt={16}>
+            <Loader />
+          </Center>
+        }
         hasMore={isFetchAll}
       >
         <Stack mb={24}>

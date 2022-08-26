@@ -7,7 +7,7 @@ type Props = {
 }
 
 export const AppHead: React.FC<Props> = ({ title, description }) => {
-  const newTitle = `${title} | Qin Team Portfolio`
+  const newTitle = `${title} | GunChang Portfolio`
 
   return (
     <Head>

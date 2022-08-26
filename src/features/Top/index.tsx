@@ -7,6 +7,7 @@ import {
   Text,
   Group,
   Image,
+  Center,
 } from '@mantine/core'
 
 import { Blog } from '@/features/Top/Blog'
@@ -15,6 +16,7 @@ import { Github } from '@/features/Top/Github'
 import { Twitter } from '@/features/Top/Twitter'
 import { Heading } from '@/components/Element/Heading'
 import { ErrorWrapper } from '@/components/Element/Error/ErrorWrapper'
+import { Loader } from '@/components/Element/Loader'
 
 import { icons } from '@/constants/page'
 
@@ -30,10 +32,10 @@ export const Top = () => {
           <Box className={classes.fvInner}>
             <Box>
               <Title order={1} className={classes.fvTitle}>
-                Shimabu IT University
+                GunChang IT University
               </Title>
               <Text className={classes.fvDesc}>
-                しまぶーのポートフォリオのためのページです
+                がんちゃんのポートフォリオのためのページです
               </Text>
             </Box>
             <Group>
@@ -54,11 +56,9 @@ export const Top = () => {
           <ErrorWrapper>
             <Suspense
               fallback={
-                <Text>
-                  Howdy!
-                  <br />
-                  Now Loading...
-                </Text>
+                <Center>
+                  <Loader />
+                </Center>
               }
             >
               <Blog />

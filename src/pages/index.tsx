@@ -7,8 +7,8 @@ const HomePage: NextPage = () => {
   return (
     <>
       <AppHead
-        title="Shimabu IT University"
-        description="しまぶーのポートフォリオのためのページです"
+        title="GunChang IT University"
+        description="がんちゃんのポートフォリオのためのページです"
       />
       <Top />
     </>

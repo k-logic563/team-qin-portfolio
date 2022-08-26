@@ -7,8 +7,8 @@ const PortfolioPage: NextPage = () => {
   return (
     <>
       <AppHead
-        title="Portfolioページ"
-        description="しまぶーのポートフォリオのポートフォリオページです"
+        title="Portfolio"
+        description="がんちゃんのポートフォリオのポートフォリオページです"
       />
       <Portfolio />
     </>

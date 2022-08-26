@@ -7,8 +7,8 @@ const ContactPage: NextPage = () => {
   return (
     <>
       <AppHead
-        title="Contactページ"
-        description="しまぶーのポートフォリオのお問い合わせページです"
+        title="Contact"
+        description="がんちゃんのポートフォリオのお問い合わせページです"
       />
       <Contact />
     </>

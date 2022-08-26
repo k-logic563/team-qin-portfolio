@@ -22,8 +22,8 @@ const BlogPage: NextPage<BlogProps> = ({ response }) => {
   return (
     <>
       <AppHead
-        title="Blog一覧ページ"
-        description="しまぶーのポートフォリオのブログ一覧ページです"
+        title="Blog"
+        description="がんちゃんのポートフォリオのブログ一覧ページです"
       />
       <Blog {...response} />
     </>
