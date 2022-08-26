@@ -28,7 +28,7 @@ export const Header = () => {
             <IconMenu2 onClick={() => setOpened((x) => !x)} />
           </MediaQuery>
           <Link href="/" passHref>
-            <a className={classes.logo}>Shimabu IT University</a>
+            <a className={classes.logo}>GunChang IT University</a>
           </Link>
           <Group>
             <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
