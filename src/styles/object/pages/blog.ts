@@ -28,5 +28,11 @@ export const useStyles = createStyles((theme) => ({
     img: {
       maxWidth: '100%',
     },
+    iframe: {
+      width: '100%',
+      maxWidth: '450px',
+      height: '100%',
+      aspectRatio: '16/9',
+    },
   },
 }))

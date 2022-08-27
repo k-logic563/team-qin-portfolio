@@ -10,6 +10,8 @@ import { BlogContent, Content } from '@/types'
 import { client } from '@/lib/axios'
 import { codeHighlight } from '@/utils/code-highlight'
 
+import 'highlight.js/styles/atom-one-dark.css'
+
 type BlogDetailProps = InferGetStaticPropsType<typeof getStaticProps>
 type Params = ParsedUrlQuery & {
   id: string
