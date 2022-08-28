@@ -10,7 +10,7 @@ export const Footer = () => {
       })}
     >
       <Text align="center" size={10}>
-        &copy;{new Date().getFullYear()} Shimabu IT University
+        &copy;{new Date().getFullYear()} GunChang IT University
       </Text>
     </Container>
   )

@@ -40,7 +40,7 @@ export const Top = () => {
             </Box>
             <Group>
               {icons.map((icon) => (
-                <a key={icon.name} href={icon.href}>
+                <a key={icon.name} href={icon.href} target="blank">
                   <Image src={`/assets/${icon.name}.svg`} alt="" />
                 </a>
               ))}

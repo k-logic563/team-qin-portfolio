@@ -13,7 +13,7 @@ export const useStyles = createStyles((theme) => ({
   },
   title: {
     fontSize: '22px',
-    fontWeight: 'bold',
+    fontWeight: 700,
   },
   date: {
     color: theme.colors.dark[2],

@@ -20,11 +20,11 @@ export const navItems = [
 export const icons = [
   {
     name: 'twitter',
-    href: '#',
+    href: 'https://twitter.com/webD_hello21',
   },
   {
     name: 'facebook',
-    href: '#',
+    href: 'https://www.facebook.com/kohei.iwata.710/',
   },
   {
     name: 'rss',
