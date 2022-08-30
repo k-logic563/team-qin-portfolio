@@ -61,7 +61,9 @@ export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
             <Link key={x.id} href={`/blog/${x.id}`} passHref>
               <a>
                 <Text className={classes.title}>{x.title}</Text>
-                <Text className={classes.description} lineClamp={1}>{x.description}</Text>
+                <Text className={classes.description} lineClamp={1}>
+                  {x.description}
+                </Text>
                 <Text className={classes.date}>
                   <time dateTime={formatDate(x.publishedAt)}>
                     {formatDate(x.publishedAt)}

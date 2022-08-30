@@ -53,7 +53,7 @@ export const Top = () => {
           <Box mb={24}>
             <Heading order={2}>Blog</Heading>
           </Box>
-          <ErrorWrapper>
+          <ErrorWrapper message="Failed to Fetch Blog Data.">
             <Suspense
               fallback={
                 <Center>
@@ -67,7 +67,17 @@ export const Top = () => {
         </Container>
       </Box>
       <Container size="lg">
-        <Portfolio />
+        <ErrorWrapper message="Failed to Fetch Portfolio Data.">
+          <Suspense
+            fallback={
+              <Center>
+                <Loader />
+              </Center>
+            }
+          >
+            <Portfolio />
+          </Suspense>
+        </ErrorWrapper>
       </Container>
       <Container size="lg" pt={100} pb={60}>
         <SimpleGrid

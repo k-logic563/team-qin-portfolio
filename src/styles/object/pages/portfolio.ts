@@ -14,6 +14,7 @@ export const useStyles = createStyles((theme) => ({
   title: {
     fontSize: '22px',
     fontWeight: 700,
+    marginBottom: '.5em',
   },
   date: {
     color: theme.colors.dark[2],

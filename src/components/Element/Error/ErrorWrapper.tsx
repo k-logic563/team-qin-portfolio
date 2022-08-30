@@ -4,14 +4,17 @@ import { Text } from '@mantine/core'
 
 type Props = {
   children: React.ReactNode
+  message: string
 }
 
-const ErrorMessage = () => {
-  return <Text>whoops,looks like something went wrong</Text>
+const ErrorMessage: React.FC<{ message: string }> = ({ message }) => {
+  return <Text>{message}</Text>
 }
 
-export const ErrorWrapper: React.FC<Props> = ({ children }) => {
+export const ErrorWrapper: React.FC<Props> = ({ children, message }) => {
   return (
-    <ErrorBoundary FallbackComponent={ErrorMessage}>{children}</ErrorBoundary>
+    <ErrorBoundary FallbackComponent={() => <ErrorMessage message={message} />}>
+      {children}
+    </ErrorBoundary>
   )
 }

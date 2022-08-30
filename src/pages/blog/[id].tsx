@@ -6,7 +6,7 @@ import { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
 import { BlogId } from '@/features/Blog/Detail'
 import { AppHead } from '@/components/Element/Head'
 
-import { BlogContent, Content } from '@/types'
+import { BlogContent, BlogResponse } from '@/types'
 import { client } from '@/lib/axios'
 import { codeHighlight } from '@/utils/code-highlight'
 
@@ -33,7 +33,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (ctx: GetStaticPropsContext<Params>) => {
   const { params, previewData } = ctx
   const draftKey = isDraft(previewData) ? previewData.draftKey : ''
-  const { data } = await client.get<Content>(`blogs/${params?.id}`, {
+  const { data } = await client.get<BlogResponse>(`blogs/${params?.id}`, {
     params: {
       draftKey,
     },

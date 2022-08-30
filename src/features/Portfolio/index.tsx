@@ -1,12 +1,17 @@
 import React from 'react'
-import Link from 'next/link'
 import { Container, Box, Image, Title, Text } from '@mantine/core'
 
 import { Heading } from '@/components/Element/Heading'
 
+import { PortfolioContent } from '@/types'
+
 import { useStyles } from '@/styles/object/pages/portfolio'
 
-export const Portfolio = () => {
+type Props = {
+  contents: PortfolioContent['contents']
+}
+
+export const Portfolio: React.FC<Props> = ({ contents }) => {
   const { classes } = useStyles()
 
   return (
@@ -15,19 +20,15 @@ export const Portfolio = () => {
         <Heading order={1}>Portfolio</Heading>
       </Box>
       <Box className={classes.list}>
-        {[...Array(6).keys()].map((x) => (
-          <Link key={x} href="#" passHref>
-            <a>
-              <Image src="/assets/Thumbnail.jpg" alt="" mb={16} />
-              <Title order={3} className={classes.title}>
-                IT KINGDOM
-              </Title>
-              <Text mb={8}>
-                当サロンのLPページ。React、Next.js、TypeScriptなどのモダンな技術を用いて作られています。初心者にちょうど良い難易度の制作物です。
-              </Text>
-              <Text className={classes.date}>2021.10 - 2021.12</Text>
-            </a>
-          </Link>
+        {contents.map((x) => (
+          <a key={x.id} href={x.link} target="blank">
+            <Image src={x.thumbnail.url} alt="" mb={16} />
+            <Title order={3} className={classes.title}>
+              {x.title}
+            </Title>
+            <Text mb={8}>{x.description}</Text>
+            <Text className={classes.date}>{x.range_date}</Text>
+          </a>
         ))}
       </Box>
     </Container>
