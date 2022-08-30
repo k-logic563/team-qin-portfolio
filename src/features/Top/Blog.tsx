@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Stack, Center } from '@mantine/core'
+import { Stack, Center, Text } from '@mantine/core'
 
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
@@ -22,15 +22,13 @@ export const Blog = () => {
         {data?.contents.map((x) => (
           <Link key={x.id} href={`/blog/${x.id}`} passHref>
             <a>
-              <dl>
-                <dt className={classes.title}>{x.title}</dt>
-                <dd className={classes.description}>{x.description}</dd>
-                <dd className={classes.date}>
-                  <time dateTime={formatDate(x.publishedAt)}>
-                    {formatDate(x.publishedAt)}
-                  </time>
-                </dd>
-              </dl>
+              <Text className={classes.title}>{x.title}</Text>
+              <Text className={classes.description} lineClamp={1}>{x.description}</Text>
+              <Text className={classes.date}>
+                <time dateTime={formatDate(x.publishedAt)}>
+                  {formatDate(x.publishedAt)}
+                </time>
+              </Text>
             </a>
           </Link>
         ))}

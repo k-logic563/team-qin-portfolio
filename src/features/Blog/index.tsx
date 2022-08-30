@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import Link from 'next/link'
 import axios from 'axios'
-import { Container, Box, Stack, Center } from '@mantine/core'
+import { Container, Box, Stack, Center, Text } from '@mantine/core'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Heading } from '@/components/Element/Heading'
@@ -60,15 +60,13 @@ export const Blog: React.FC<Props> = ({ contents, totalCount }) => {
           {items.map((x) => (
             <Link key={x.id} href={`/blog/${x.id}`} passHref>
               <a>
-                <dl>
-                  <dt className={classes.title}>{x.title}</dt>
-                  <dd className={classes.description}>{x.description}</dd>
-                  <dd className={classes.date}>
-                    <time dateTime={formatDate(x.publishedAt)}>
-                      {formatDate(x.publishedAt)}
-                    </time>
-                  </dd>
-                </dl>
+                <Text className={classes.title}>{x.title}</Text>
+                <Text className={classes.description} lineClamp={1}>{x.description}</Text>
+                <Text className={classes.date}>
+                  <time dateTime={formatDate(x.publishedAt)}>
+                    {formatDate(x.publishedAt)}
+                  </time>
+                </Text>
               </a>
             </Link>
           ))}

@@ -1,3 +1,7 @@
 import axios from 'axios'
 
-export const fetcher = (url: string) => axios.get(url).then((res) => res.data)
+const http = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_BASE_URL
+})
+
+export const fetcher = (url: string) => http.get(url).then((res) => res.data)
