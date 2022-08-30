@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Box, Text } from '@mantine/core'
+import { Container, Box, Text, Image } from '@mantine/core'
 
 import { Heading } from '@/components/Element/Heading'
 
@@ -10,9 +10,17 @@ type Props = {
   title: string
   content: string
   publishedAt: string
+  eyecatch: {
+    url: string
+  }
 }
 
-export const BlogId: React.FC<Props> = ({ title, content, publishedAt }) => {
+export const BlogId: React.FC<Props> = ({
+  title,
+  content,
+  publishedAt,
+  eyecatch,
+}) => {
   const { classes } = useStyles()
 
   return (
@@ -24,6 +32,9 @@ export const BlogId: React.FC<Props> = ({ title, content, publishedAt }) => {
         <Text sx={(theme) => ({ color: theme.colors.dark[2] })}>
           {formatDate(publishedAt)}
         </Text>
+      </Box>
+      <Box mb={32}>
+        <Image src={eyecatch.url} alt="" />
       </Box>
       <Box
         className={classes.contents}
