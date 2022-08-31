@@ -17,9 +17,6 @@ export const Portfolio = () => {
 
   return (
     <>
-      <Box mb={24}>
-        <Heading order={2}>Portfolio</Heading>
-      </Box>
       <Box mb={40} className={classes.list}>
         {data?.contents.map((x) => (
           <a key={x.id} href={x.link} target="blank">

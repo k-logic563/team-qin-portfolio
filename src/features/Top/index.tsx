@@ -67,6 +67,9 @@ export const Top = () => {
         </Container>
       </Box>
       <Container size="lg">
+        <Box mb={24}>
+          <Heading order={2}>Portfolio</Heading>
+        </Box>
         <ErrorWrapper message="Failed to Fetch Portfolio Data.">
           <Suspense
             fallback={
