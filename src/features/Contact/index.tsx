@@ -13,7 +13,7 @@ export const Contact = () => {
   const form = useForm({
     initialValues,
     validate: {
-      name: (value) => (!value.trim() ? '※必須項目です' : null),
+      name: (value) => (value.trim() ? null : '※必須項目です'),
       email: (value) => {
         const newValue = value.trim()
         if (!newValue) {
@@ -24,7 +24,7 @@ export const Contact = () => {
         }
         return null
       },
-      message: (value) => (!value.trim() ? '※必須項目です' : null),
+      message: (value) => (value.trim() ? null : '※必須項目です'),
     },
   })
 

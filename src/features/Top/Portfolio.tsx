@@ -1,7 +1,6 @@
 import React from 'react'
 import { Box, Image, Title, Text, Center } from '@mantine/core'
 
-import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
 import { useFetcher } from '@/hooks/useFetcher'
