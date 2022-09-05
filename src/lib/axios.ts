@@ -7,4 +7,11 @@ const client = axios.create({
   },
 })
 
-export { client }
+const twClient = axios.create({
+  baseURL: 'https://api.twitter.com/2',
+  headers: {
+    Authorization: `Bearer ${process.env.TWITTER_TOKEN}`,
+  },
+})
+
+export { client, twClient }

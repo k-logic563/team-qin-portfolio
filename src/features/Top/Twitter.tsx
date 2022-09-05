@@ -1,32 +1,42 @@
 import React from 'react'
 import { Box, Group, Text, Center, Avatar, Stack } from '@mantine/core'
 
-import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
+
+import { useFetcher } from '@/hooks/useFetcher'
+import { TwitterTweetProps, TwitterUserProps } from '@/types'
+import { formatDate } from '@/utils/format'
 
 import * as styles from '@/styles'
 
 export const Twitter = () => {
   const { classes } = styles.twitter.useStyles()
+  const { data: user, error: userError } = useFetcher<{
+    data: TwitterUserProps
+  }>('twitter/user?user.fields=profile_image_url')
+  const { data: tweet, error: tweetError } = useFetcher<{
+    data: TwitterTweetProps[]
+  }>(
+    'twitter/tweet?max_results=5&tweet.fields=created_at&user.fields=name&exclude=replies'
+  )
+
+  if (userError) throw new Error(userError)
+  if (tweetError) throw new Error(tweetError)
 
   return (
     <>
-      <Box mb={24}>
-        <Heading order={2}>Twitter</Heading>
-      </Box>
       <Stack spacing={56} mb={40}>
-        {[...Array(3).keys()].map((_, i) => (
+        {tweet?.data.map((x, i) => (
           <Box key={i} className={classes.wrapper}>
-            <Avatar src="https://picsum.photos/200" radius="xl" />
+            <Avatar src={user?.data.profile_image_url} radius="xl" />
             <Box>
               <Group mb={4}>
-                <Text className={classes.title}>しまぶーのIT大学</Text>
-                <Text className={classes.date}>@shimabu_it・5月25日</Text>
+                <Text className={classes.title}>{user?.data.name}</Text>
+                <Text className={classes.date}>
+                  @{user?.data.username}・{formatDate(x.created_at, 'M月d日')}
+                </Text>
               </Group>
-              <Box>
-                📣 新サービス「Noway
-                Form」をリリースしました！試しに使っていただけると幸いです😊
-              </Box>
+              <Box>{x.text}</Box>
             </Box>
           </Box>
         ))}

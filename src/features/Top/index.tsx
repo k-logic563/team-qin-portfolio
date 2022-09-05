@@ -97,7 +97,20 @@ export const Top = () => {
             <Github />
           </Box>
           <Box>
-            <Twitter />
+            <Box mb={24}>
+              <Heading order={2}>Twitter</Heading>
+            </Box>
+            <ErrorWrapper message="Failed to Fetch Twitter Data.">
+              <Suspense
+                fallback={
+                  <Center>
+                    <Loader />
+                  </Center>
+                }
+              >
+                <Twitter />
+              </Suspense>
+            </ErrorWrapper>
           </Box>
         </SimpleGrid>
       </Container>

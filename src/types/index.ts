@@ -27,5 +27,18 @@ export type PortfolioResponse = {
   publishedAt: string
 }
 
+export type TwitterUserProps = {
+  profile_image_url: string
+  id: string
+  username: string
+  name: string
+}
+
+export type TwitterTweetProps = {
+  created_at: string
+  id: string
+  text: string
+}
+
 export type BlogContent = MicroCMSListResponse<BlogResponse>
 export type PortfolioContent = MicroCMSListResponse<PortfolioResponse>
