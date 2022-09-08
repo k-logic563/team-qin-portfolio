@@ -17,7 +17,7 @@ export const Twitter = () => {
   const { data: tweet, error: tweetError } = useFetcher<{
     data: TwitterTweetProps[]
   }>(
-    'twitter/tweet?max_results=5&tweet.fields=created_at&user.fields=name&exclude=replies'
+    'twitter/tweet?max_results=5&tweet.fields=created_at&user.fields=name&exclude=replies,retweets'
   )
 
   if (userError) throw new Error(userError)
@@ -36,7 +36,7 @@ export const Twitter = () => {
                   @{user?.data.username}・{formatDate(x.created_at, 'M月d日')}
                 </Text>
               </Group>
-              <Box>{x.text}</Box>
+              <Box style={{ whiteSpace: 'pre-wrap' }} dangerouslySetInnerHTML={{ __html: x.text }} />
             </Box>
           </Box>
         ))}
