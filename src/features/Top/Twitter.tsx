@@ -37,9 +37,15 @@ export const Twitter = () => {
                   @{user?.data.username}・{formatDate(x.created_at, 'M月d日')}
                 </Text>
               </Group>
-              <Box style={{ whiteSpace: 'pre-wrap' }}>
+              <Box sx={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>
                 {reactStringReplace(x.text, /(https?:\/\/\S+)/g, (match, i) => (
-                  <Anchor key={i} href={match} target="_blank" rel="noreferrer">
+                  <Anchor
+                    sx={{ display: 'block' }}
+                    key={i}
+                    href={match}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {match}
                   </Anchor>
                 ))}
