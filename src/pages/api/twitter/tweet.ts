@@ -4,7 +4,7 @@ import { twClient } from '@/lib/axios'
 import { TwitterUserProps } from '@/types'
 import { encodeUrl } from '@/utils/converter'
 
-const getTwitterUser = async (req: NextApiRequest, res: NextApiResponse) => {
+const getTweet = async (req: NextApiRequest, res: NextApiResponse) => {
   const query = req.query
 
   const { data } = await twClient.get<TwitterUserProps>(
@@ -14,4 +14,4 @@ const getTwitterUser = async (req: NextApiRequest, res: NextApiResponse) => {
   return res.status(200).json(data)
 }
 
-export default getTwitterUser
+export default getTweet
