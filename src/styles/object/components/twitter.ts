@@ -4,6 +4,9 @@ export const useStyles = createStyles((theme) => ({
   wrapper: {
     maxHeight: 'clamp(450px, 70vw, 850px)',
     marginBottom: '24px',
+    '&::-webkit-scrollbar': {
+      display: 'none'
+    }
   },
   inner: {
     display: 'grid',
