@@ -12,9 +12,9 @@ const useStyles = createStyles(() => ({
     display: 'grid',
     placeItems: 'center',
     div: {
-      height: 'auto !important'
-    }
-  }
+      height: 'auto !important',
+    },
+  },
 }))
 
 const ErrorPage: NextPage<Props> = ({ statusCode }) => {

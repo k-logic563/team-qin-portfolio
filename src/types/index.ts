@@ -35,9 +35,22 @@ export type TwitterUserProps = {
 }
 
 export type TwitterTweetProps = {
-  created_at: string
-  id: string
-  text: string
+  data: {
+    created_at: string
+    id: string
+    text: string
+    imageUrls?: string[]
+    attachments?: {
+      media_keys: string[]
+    }
+  }[]
+  includes: {
+    media: {
+      media_key: string
+      type: 'photo' | 'video'
+      url: string
+    }[]
+  }
 }
 
 export type BlogContent = MicroCMSListResponse<BlogResponse>
