@@ -8,7 +8,7 @@ const getTweet = async (req: NextApiRequest, res: NextApiResponse) => {
   const query = req.query
 
   const { data } = await twClient.get<TwitterUserProps>(
-    `users/${process.env.TWITTER_ID}/tweets?${encodeUrl(query)}`
+    `tweets?${encodeUrl(query)}`
   )
 
   return res.status(200).json(data)

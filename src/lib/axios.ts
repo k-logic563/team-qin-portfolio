@@ -8,7 +8,7 @@ const client = axios.create({
 })
 
 const twClient = axios.create({
-  baseURL: 'https://api.twitter.com/2',
+  baseURL: `https://api.twitter.com/2/users/${process.env.TWITTER_ID}`,
   headers: {
     Authorization: `Bearer ${process.env.TWITTER_TOKEN}`,
   },
