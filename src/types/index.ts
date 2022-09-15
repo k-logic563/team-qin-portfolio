@@ -1,4 +1,4 @@
-import { MicroCMSListResponse } from 'microcms-js-sdk'
+import type { MicroCMSListResponse } from 'microcms-js-sdk'
 
 export type BlogResponse = {
   id: string
