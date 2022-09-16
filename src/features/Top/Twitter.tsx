@@ -15,7 +15,7 @@ import reactStringReplace from 'react-string-replace'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
 import { useFetcher } from '@/hooks/useFetcher'
-import { TwitterTweetProps, TwitterUserProps } from '@/types'
+import { TwitterTweetsProps, TwitterUserProps } from '@/types'
 import { formatDate } from '@/utils/format'
 
 import 'simplebar/dist/simplebar.min.css'
@@ -26,7 +26,7 @@ export const Twitter = () => {
   const { data: user, error: userError } = useFetcher<{
     data: TwitterUserProps
   }>('twitter/user?user.fields=profile_image_url')
-  const { data: tweet, error: tweetError } = useFetcher<TwitterTweetProps>(
+  const { data: tweets, error: tweetError } = useFetcher<TwitterTweetsProps>(
     'twitter/tweet?max_results=5&tweet.fields=created_at&user.fields=name,profile_image_url&exclude=replies,retweets&expansions=attachments.media_keys&media.fields=url'
   )
 
@@ -34,11 +34,11 @@ export const Twitter = () => {
   if (tweetError) throw new Error(tweetError)
 
   const formattedTweets = useMemo(() => {
-    const newTweets = tweet?.data.map((x) => {
+    const newTweets = tweets?.data.map((x) => {
       // メディアがあった場合
       if (x.attachments) {
         const imageUrls = x.attachments.media_keys.map((key) => {
-          const targetImage = tweet.includes.media.find(
+          const targetImage = tweets.includes.media.find(
             (y) => y.media_key === key
           )
           // 画像ならurlを返す
@@ -52,7 +52,7 @@ export const Twitter = () => {
       return x
     })
     return newTweets
-  }, [tweet])
+  }, [tweets])
 
   return (
     <>

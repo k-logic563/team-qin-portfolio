@@ -34,7 +34,7 @@ export type TwitterUserProps = {
   name: string
 }
 
-export type TwitterTweetProps = {
+export type TwitterTweetsProps = {
   data: {
     created_at: string
     id: string
