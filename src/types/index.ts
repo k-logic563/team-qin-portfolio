@@ -1,4 +1,4 @@
-import { MicroCMSListResponse } from 'microcms-js-sdk'
+import type { MicroCMSListResponse } from 'microcms-js-sdk'
 
 export type BlogResponse = {
   id: string
@@ -25,6 +25,32 @@ export type PortfolioResponse = {
   }
   range_date: string
   publishedAt: string
+}
+
+export type TwitterUserProps = {
+  profile_image_url: string
+  id: string
+  username: string
+  name: string
+}
+
+export type TwitterTweetsProps = {
+  data: {
+    created_at: string
+    id: string
+    text: string
+    imageUrls?: string[]
+    attachments?: {
+      media_keys: string[]
+    }
+  }[]
+  includes: {
+    media: {
+      media_key: string
+      type: 'photo' | 'video'
+      url: string
+    }[]
+  }
 }
 
 export type BlogContent = MicroCMSListResponse<BlogResponse>
