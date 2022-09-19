@@ -39,9 +39,6 @@ export const Github = () => {
 
   return (
     <>
-      <Box mb={24}>
-        <Heading order={2}>GitHub</Heading>
-      </Box>
       <SimpleBar className={classes.wrapper} autoHide={false}>
         <Stack spacing={40} mb={32}>
           {data?.user.repositories.edges.map(({ node }, index) => (
