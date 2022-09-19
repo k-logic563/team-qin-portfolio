@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
+import Link from 'next/link'
 import { Box, Stack, Text, Group, Center, Progress } from '@mantine/core'
 import { IconStar, IconGitFork } from '@tabler/icons'
 import SimpleBar from 'simplebar-react'
 
-import { Heading } from '@/components/Element/Heading'
 import { LinkButton } from '@/components/Element/Button/LinkButton'
 
 import { useFetcher } from '@/hooks/useFetcher'
@@ -42,39 +42,45 @@ export const Github = () => {
       <SimpleBar className={classes.wrapper} autoHide={false}>
         <Stack spacing={40} mb={32}>
           {data?.user.repositories.edges.map(({ node }, index) => (
-            <Box key={node.id}>
-              <Text className={classes.title} mb={8}>
-                {node.name}
-              </Text>
-              <Text mb={8}>{node.description ?? 'no description'}</Text>
-              <Group className={classes.reviews} mb={8}>
-                <Text>
-                  <IconStar />
-                  {node.stargazerCount}
+            <Link
+              key={node.id}
+              href={`https://github.com/k-logic563/${node.name}`}
+              passHref
+            >
+              <a target="_blank">
+                <Text className={classes.title} mb={8}>
+                  {node.name}
                 </Text>
-                <Text>
-                  <IconGitFork />
-                  {node.forkCount}
-                </Text>
-              </Group>
-              <Box>
-                <Progress mb={8} sections={languageProps[index]} />
-                <Group sx={{ gap: '4px 20px' }}>
-                  {languageProps[index].map((props, i) => (
-                    <Group key={i} spacing={6}>
-                      <Box
-                        className={classes.round}
-                        sx={{ backgroundColor: props.color }}
-                      />
-                      <Text className={classes.language}>{props.name}</Text>
-                      <Text
-                        className={classes.percentage}
-                      >{`${props.value}%`}</Text>
-                    </Group>
-                  ))}
+                <Text mb={8}>{node.description ?? 'no description'}</Text>
+                <Group className={classes.reviews} mb={8}>
+                  <Text>
+                    <IconStar />
+                    {node.stargazerCount}
+                  </Text>
+                  <Text>
+                    <IconGitFork />
+                    {node.forkCount}
+                  </Text>
                 </Group>
-              </Box>
-            </Box>
+                <Box>
+                  <Progress mb={8} sections={languageProps[index]} />
+                  <Group sx={{ gap: '4px 20px' }}>
+                    {languageProps[index].map((props, i) => (
+                      <Group key={i} spacing={6}>
+                        <Box
+                          className={classes.round}
+                          sx={{ backgroundColor: props.color }}
+                        />
+                        <Text className={classes.language}>{props.name}</Text>
+                        <Text
+                          className={classes.percentage}
+                        >{`${props.value}%`}</Text>
+                      </Group>
+                    ))}
+                  </Group>
+                </Box>
+              </a>
+            </Link>
           ))}
         </Stack>
       </SimpleBar>
