@@ -94,7 +94,17 @@ export const Top = () => {
           ]}
         >
           <Box>
-            <Github />
+            <ErrorWrapper message="Failed to Fetch GitHub Data.">
+              <Suspense
+                fallback={
+                  <Center>
+                    <Loader />
+                  </Center>
+                }
+              >
+                <Github />
+              </Suspense>
+            </ErrorWrapper>
           </Box>
           <Box>
             <Box mb={24}>

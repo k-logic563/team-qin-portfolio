@@ -6,5 +6,6 @@ declare namespace NodeJS {
     readonly NEXT_PUBLIC_BASE_URL: string
     readonly TWITTER_ID: string
     readonly TWITTER_TOKEN: string
+    readonly GITHUB_API_KEY: string
   }
 }
