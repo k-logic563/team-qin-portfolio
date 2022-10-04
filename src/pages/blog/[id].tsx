@@ -3,7 +3,7 @@ import cheerio from 'cheerio'
 import { ParsedUrlQuery } from 'querystring'
 import { NextPage, InferGetStaticPropsType, GetStaticPropsContext } from 'next'
 
-import { BlogId } from '@/features/Blog/Detail'
+import { Show } from '@/features/Blog/Show'
 import { AppHead } from '@/components/Element/Head'
 
 import { BlogContent, BlogResponse } from '@/types'
@@ -57,7 +57,7 @@ const BlogIdPage: NextPage<BlogDetailProps> = ({ data }) => {
   return (
     <>
       <AppHead title={data.title} description={data.description} />
-      <BlogId {...data} />
+      <Show {...data} />
     </>
   )
 }

@@ -15,7 +15,7 @@ type Props = {
   }
 }
 
-export const BlogId: React.FC<Props> = ({
+export const Show: React.FC<Props> = ({
   title,
   content,
   publishedAt,
