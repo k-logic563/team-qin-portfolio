@@ -5,6 +5,7 @@ import { SWRResponse, SWRConfig, Middleware } from 'swr'
 import { Github } from '@/features/Top/Github'
 import { ErrorWrapper } from '@/components/Element/Error/ErrorWrapper'
 
+import { formatGithubLanguages } from '@/utils/format'
 import { props, mockData } from './mocks/github'
 
 describe('GitHubデータ取得、表示', () => {
@@ -30,10 +31,14 @@ describe('GitHubデータ取得、表示', () => {
       </ErrorWrapper>
     )
 
+    const language = formatGithubLanguages(mockData)[0][0]
+
     expect(getByText(props.name)).toBeInTheDocument()
     expect(getByText(props.description)).toBeInTheDocument()
     expect(getByText(props.forkCount)).toBeInTheDocument()
     expect(getByText(props.stargazerCount)).toBeInTheDocument()
+    expect(getByText(props.languageName)).toBeInTheDocument()
+    expect(getByText(`${language.value}%`)).toBeInTheDocument()
   })
 
   it('エラー表示', () => {

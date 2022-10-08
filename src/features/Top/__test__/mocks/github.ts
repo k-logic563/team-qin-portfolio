@@ -6,10 +6,17 @@ export const props = {
   description: faker.random.words(),
   forkCount: faker.datatype.number(),
   stargazerCount: faker.datatype.number(),
-  languageSize: faker.datatype.number(),
+  languageSize: faker.datatype.number({
+    min: 10,
+    max: 100,
+  }),
   languageId: faker.datatype.uuid(),
   languageColor: faker.internet.color(),
   languageName: faker.random.word(),
+  totalSize: faker.datatype.number({
+    min: 100,
+    max: 1000,
+  }),
 }
 
 export const mockData = {
@@ -27,15 +34,14 @@ export const mockData = {
               edges: [
                 {
                   size: props.languageSize,
-                  node: [
-                    {
-                      id: props.languageId,
-                      color: props.languageColor,
-                      name: props.languageName,
-                    },
-                  ],
+                  node: {
+                    id: props.languageId,
+                    color: props.languageColor,
+                    name: props.languageName,
+                  },
                 },
               ],
+              totalSize: props.totalSize,
             },
           },
         },
