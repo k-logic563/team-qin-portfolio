@@ -53,5 +53,32 @@ export type TwitterTweetsProps = {
   }
 }
 
+export type Repositories = {
+  user: {
+    repositories: {
+      edges: {
+        node: {
+          id: string
+          forkCount: number
+          stargazerCount: number
+          name: string
+          description: string | null
+          languages: {
+            edges: {
+              size: number
+              node: {
+                id: string
+                color: string
+                name: string
+              }
+            }[]
+            totalSize: number
+          }
+        }
+      }[]
+    }
+  }
+}
+
 export type BlogContent = MicroCMSListResponse<BlogResponse>
 export type PortfolioContent = MicroCMSListResponse<PortfolioResponse>

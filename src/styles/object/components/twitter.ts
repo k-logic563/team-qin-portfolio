@@ -2,7 +2,7 @@ import { createStyles } from '@mantine/core'
 
 export const useStyles = createStyles((theme) => ({
   wrapper: {
-    maxHeight: 'clamp(450px, 70vw, 850px)',
+    maxHeight: 'clamp(350px, 50vw, 540px)',
     marginBottom: '24px',
     '&::-webkit-scrollbar': {
       display: 'none',
